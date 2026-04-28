@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStay India — Authentic Homestays Across India</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --saffron: #E8640A;
+      --saffron-dark: #C24F04;
+      --saffron-light: #FEF3EC;
+      --earth: #6B4226;
+      --earth-light: #F5EDE6;
+      --teal: #0B7B6B;
+      --teal-light: #E6F5F3;
+      --cream: #FDFAF6;
+      --text-primary: #1C1008;
+      --text-secondary: #6B5B4E;
+      --text-muted: #A89080;
+      --border: #EAE0D8;
+      --bg: #FFFFFF;
+      --bg-soft: #FAF6F2;
+      --shadow-sm: 0 2px 8px rgba(107,66,38,0.08);
+      --shadow-md: 0 6px 24px rgba(107,66,38,0.12);
+      --shadow-lg: 0 12px 48px rgba(107,66,38,0.18);
+      --radius: 14px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-primary);
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(253,250,246,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--saffron);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--text-primary); }
+    .logo em { font-style: italic; font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      padding: 8px 16px; border-radius: var(--radius-pill);
+      border: none; background: transparent;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-secondary); cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+      display: inline-flex; align-items: center;
+    }
+    .nav-link:hover { background: var(--bg-soft); color: var(--text-primary); }
+    .nav-btn {
+      padding: 9px 22px; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--saffron);
+      background: var(--saffron); color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .nav-btn:hover { background: var(--saffron-dark); border-color: var(--saffron-dark); }
+    .nav-btn.outline {
+      background: transparent; color: var(--saffron);
+    }
+    .nav-btn.outline:hover { background: var(--saffron-light); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 92vh;
+      display: flex; align-items: center;
+      background: linear-gradient(160deg, #1C0A02 0%, #3D1A08 40%, #6B2D0E 75%, #E8640A 100%);
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        radial-gradient(circle at 15% 85%, rgba(232,100,10,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, rgba(11,123,107,0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(255,200,100,0.05) 0%, transparent 70%);
+    }
+    .hero-mandala {
+      position: absolute; right: -80px; top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px;
+      opacity: 0.06;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='30' fill='none' stroke='white' stroke-width='1'/%3E%3Cline x1='10' y1='100' x2='190' y2='100' stroke='white' stroke-width='0.5'/%3E%3Cline x1='100' y1='10' x2='100' y2='190' stroke='white' stroke-width='0.5'/%3E%3Cline x1='27' y1='27' x2='173' y2='173' stroke='white' stroke-width='0.5'/%3E%3Cline x1='173' y1='27' x2='27' y2='173' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      padding: 0 5%; max-width: 700px;
+      animation: heroIn 0.8s ease both;
+    }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: none; }
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(232,100,10,0.2);
+      border: 1px solid rgba(232,100,10,0.4);
+      color: #FFBA70; font-size: 13px; font-weight: 600;
+      padding: 6px 16px; border-radius: var(--radius-pill);
+      margin-bottom: 24px; letter-spacing: 0.5px;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #FFBA70; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700; line-height: 1.08;
+      color: #fff; margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: italic; color: #FFBA70; }
+    .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 18px; line-height: 1.7;
+      max-width: 520px; margin-bottom: 40px;
+    }
+
+    /* ── SEARCH PANEL ── */
+    .search-panel {
+      background: rgba(255,255,255,0.97);
+      border-radius: var(--radius-lg);
+      padding: 6px 6px 6px 6px;
+      display: flex; align-items: center;
+      box-shadow: var(--shadow-lg);
+      flex-wrap: wrap; gap: 2px;
+      max-width: 680px;
+    }
+    .search-group {
+      flex: 1; min-width: 120px;
+      padding: 10px 16px;
+      display: flex; flex-direction: column;
+    }
+    .search-group label {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--text-muted); margin-bottom: 3px;
+    }
+    .search-group input, .search-group select {
+      border: none; outline: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-primary); background: transparent;
+      width: 100%;
+    }
+    .search-group select option { color: var(--text-primary); }
+    .search-divider { width: 1px; height: 40px; background: var(--border); }
+    .search-go {
+      background: var(--saffron); color: #fff;
+      border: none; border-radius: 16px;
+      padding: 14px 28px; margin: 2px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .search-go:hover { background: var(--saffron-dark); }
+
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap;
+    }
+    .stat { color: rgba(255,255,255,0.7); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: #FFBA70;
+      line-height: 1;
+    }
+    .stat-label { font-size: 13px; margin-top: 2px; }
+
+    /* ── AI SEARCH BAR ── */
+    .ai-search-wrap {
+      margin-top: 20px; max-width: 680px;
+    }
+    .ai-search-label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    .ai-badge {
+      background: rgba(232,100,10,0.3); color: #FFBA70;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 2px 8px; border-radius: var(--radius-pill);
+      border: 1px solid rgba(232,100,10,0.5);
+    }
+    .ai-search-row {
+      display: flex; gap: 8px; align-items: center;
+    }
+    .ai-input {
+      flex: 1; padding: 14px 20px;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-pill);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; color: #fff; outline: none;
+      transition: all 0.2s;
+    }
+    .ai-input::placeholder { color: rgba(255,255,255,0.4); }
+    .ai-input:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(232,100,10,0.6);
+    }
+    .ai-go {
+      padding: 14px 24px;
+      background: rgba(232,100,10,0.85);
+      border: none; border-radius: var(--radius-pill);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 700; color: #fff;
+      cursor: pointer; transition: background 0.2s;
+      white-space: nowrap; display: flex; align-items: center; gap: 6px;
+    }
+    .ai-go:hover { background: var(--saffron); }
+    .ai-go:disabled { opacity: 0.6; cursor: not-allowed; }
+    .ai-thinking {
+      display: none; align-items: center; gap: 10px;
+      margin-top: 10px; font-size: 13px;
+      color: rgba(255,255,255,0.55);
+    }
+    .ai-thinking.visible { display: flex; }
+    .ai-dots span {
+      display: inline-block; width: 5px; height: 5px;
+      border-radius: 50%; background: #FFBA70;
+      animation: dotBounce 1.2s infinite;
+    }
+    .ai-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .ai-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotBounce {
+      0%,80%,100% { transform: translateY(0); opacity:0.4; }
+      40% { transform: translateY(-6px); opacity:1; }
+    }
+    .ai-result-banner {
+      display: none; margin-top: 10px;
+      background: rgba(232,100,10,0.15);
+      border: 1px solid rgba(232,100,10,0.3);
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      font-size: 13px; color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+    .ai-result-banner.visible { display: block; }
+    .ai-result-banner strong { color: #FFBA70; }
+    .ai-chips {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .ai-chip {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px; font-size: 12px;
+      color: rgba(255,255,255,0.7); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ai-chip:hover { background: rgba(232,100,10,0.3); color: #fff; }
+
+    /* ── CITY SELECTOR ── */
+    .cities-section { padding: 64px 5% 32px; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--saffron); margin-bottom: 12px;
+    }
+    .section-tag::before {
+      content: ''; width: 20px; height: 2px; background: var(--saffron);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700; line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      color: var(--text-secondary); font-size: 16px;
+      margin-bottom: 36px;
+    }
+
+    .city-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .city-card {
+      position: relative; border-radius: var(--radius);
+      overflow: hidden; cursor: pointer;
+      aspect-ratio: 3/4;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .city-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .city-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .city-card:hover img { transform: scale(1.06); }
+    .city-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,10,2,0.85) 0%, rgba(28,10,2,0.1) 60%, transparent 100%);
+    }
+    .city-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 16px;
+    }
+    .city-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: #fff;
+      line-height: 1.2; margin-bottom: 4px;
+    }
+    .city-state {
+      font-size: 12px; color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+    .city-count {
+      display: inline-block;
+      background: rgba(232,100,10,0.85);
+      color: #fff; font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: var(--radius-pill);
+    }
+    .city-card.active-city .city-overlay {
+      background: linear-gradient(to top, rgba(232,100,10,0.9) 0%, rgba(232,100,10,0.2) 60%, transparent 100%);
+    }
+
+    /* ── LISTINGS ── */
+    .listings-section { padding: 32px 5% 64px; }
+    .listings-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 24px;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .listings-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700;
+    }
+    .listings-count {
+      color: var(--text-secondary); font-size: 15px; margin-top: 4px;
+    }
+
+    .filters {
+      display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .filter-chip {
+      padding: 8px 18px; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border);
+      background: transparent; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      color: var(--text-secondary); transition: all 0.2s;
+    }
+    .filter-chip:hover { border-color: var(--saffron); color: var(--saffron); }
+    .filter-chip.active {
+      background: var(--saffron); color: #fff; border-color: var(--saffron);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    /* ── PROPERTY CARD ── */
+    .prop-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .prop-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .prop-img-wrap { position: relative; overflow: hidden; }
+    .prop-img-wrap img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; display: block;
+      transition: transform 0.45s;
+    }
+    .prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
+    .prop-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(255,255,255,0.95);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px; font-size: 11px; font-weight: 600;
+      color: var(--text-primary);
+    }
+    .prop-badge.verified {
+      background: var(--teal); color: #fff;
+    }
+    .prop-badge.popular {
+      background: var(--saffron); color: #fff;
+    }
+    .heart-btn {
+      position: absolute; top: 12px; right: 12px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; transition: all 0.2s;
+    }
+    .heart-btn:hover { background: #fff; transform: scale(1.1); }
+    .prop-body { padding: 18px; }
+    .prop-city-tag {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--saffron); margin-bottom: 5px;
+    }
+    .prop-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      line-height: 1.3; margin-bottom: 6px;
+    }
+    .prop-host {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .host-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--saffron-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: var(--saffron);
+    }
+    .host-name { font-size: 13px; color: var(--text-secondary); }
+    .prop-features {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .prop-feature {
+      font-size: 12px; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .prop-rating {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .prop-rating .star { color: #F5A623; }
+    .prop-rating .reviews { font-weight: 400; color: var(--text-muted); }
+    .prop-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .prop-price { font-size: 20px; font-weight: 700; }
+    .prop-price span { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
+    .book-btn {
+      background: var(--saffron); color: #fff;
+      border: none; border-radius: var(--radius-pill);
+      padding: 9px 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .book-btn:hover { background: var(--saffron-dark); }
+
+    /* ── EXPERIENCES ── */
+    .exp-section {
+      padding: 64px 5%;
+      background: var(--text-primary);
+    }
+    .exp-section .section-tag { color: #FFBA70; }
+    .exp-section .section-tag::before { background: #FFBA70; }
+    .exp-section .section-title { color: #fff; }
+    .exp-section .section-sub { color: rgba(255,255,255,0.55); }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .exp-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .exp-card:hover { background: rgba(232,100,10,0.15); border-color: rgba(232,100,10,0.4); }
+    .exp-icon { font-size: 32px; margin-bottom: 14px; }
+    .exp-city {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: #FFBA70; margin-bottom: 6px;
+    }
+    .exp-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 600; color: #fff;
+      margin-bottom: 8px; line-height: 1.3;
+    }
+    .exp-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .exp-price {
+      margin-top: 14px; font-size: 15px;
+      font-weight: 700; color: #FFBA70;
+    }
+
+    /* ── WHY LOCALSTAY ── */
+    .why-section { padding: 64px 5%; background: var(--bg-soft); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .why-card {
+      background: var(--bg); border-radius: var(--radius);
+      padding: 28px 22px; border: 1px solid var(--border);
+    }
+    .why-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--saffron-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 16px;
+    }
+    .why-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 700; margin-bottom: 8px;
+    }
+    .why-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+
+    /* ── HOST STORIES ── */
+    .hosts-section { padding: 64px 5%; }
+    .hosts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .host-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: box-shadow 0.2s;
+    }
+    .host-card:hover { box-shadow: var(--shadow-sm); }
+    .host-card-avatar {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--saffron-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700;
+      color: var(--saffron); margin-bottom: 14px;
+    }
+    .host-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; margin-bottom: 4px;
+    }
+    .host-card-loc {
+      font-size: 13px; color: var(--saffron);
+      font-weight: 600; margin-bottom: 12px;
+    }
+    .host-card-quote {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.7; font-style: italic;
+    }
+    .host-card-years {
+      margin-top: 14px; font-size: 12px;
+      color: var(--text-muted); font-weight: 500;
+    }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(28,10,2,0.6); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--bg); border-radius: var(--radius-lg);
+      width: 100%; max-width: 500px;
+      box-shadow: var(--shadow-lg); overflow: hidden;
+      animation: modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      max-height: 90vh; overflow-y: auto;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to   { opacity: 1; transform: none; }
+    }
+    .modal-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; background: var(--bg); z-index: 1;
+    }
+    .modal-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+    }
+    .modal-close {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1.5px solid var(--border); background: transparent;
+      cursor: pointer; font-size: 18px; color: var(--text-secondary);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--bg-soft); }
+    .modal-body { padding: 24px 28px; }
+    .modal-tabs {
+      display: flex; gap: 0; margin-bottom: 24px;
+      border: 1.5px solid var(--border); border-radius: var(--radius-pill);
+      padding: 4px; background: var(--bg-soft);
+    }
+    .modal-tab {
+      flex: 1; padding: 9px; border-radius: var(--radius-pill);
+      border: none; background: transparent; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-secondary); transition: all 0.2s;
+    }
+    .modal-tab.active {
+      background: var(--bg); color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 7px; color: var(--text-secondary);
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;
+      outline: none; transition: border-color 0.2s;
+      color: var(--text-primary); background: var(--bg);
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--saffron);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-primary {
+      width: 100%; padding: 14px;
+      background: var(--saffron); color: #fff;
+      border: none; border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s; margin-top: 8px;
+    }
+    .btn-primary:hover { background: var(--saffron-dark); }
+    .divider-or {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; color: var(--text-muted); margin: 16px 0;
+    }
+    .divider-or::before, .divider-or::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .social-btn {
+      width: 100%; padding: 12px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      background: transparent; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.2s; color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .social-btn:hover { background: var(--bg-soft); }
+    .modal-note {
+      text-align: center; font-size: 12px;
+      color: var(--text-muted); margin-top: 14px; line-height: 1.6;
+    }
+    .modal-note a { color: var(--saffron); text-decoration: none; font-weight: 600; }
+
+    /* booking modal */
+    .booking-prop-summary {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--bg-soft); border-radius: var(--radius);
+      padding: 16px; margin-bottom: 20px;
+    }
+    .booking-prop-img {
+      width: 72px; height: 72px; border-radius: 10px;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .booking-prop-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 700; margin-bottom: 3px;
+    }
+    .booking-prop-info p { font-size: 13px; color: var(--text-secondary); }
+    .price-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-row:last-child {
+      border-bottom: none; font-weight: 700;
+      font-size: 15px; color: var(--text-primary);
+    }
+    .price-row span:first-child { color: var(--text-secondary); }
+    .price-breakdown { margin-bottom: 18px; }
+
+    /* success */
+    .success-state { text-align: center; padding: 20px 0; }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--teal-light);
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+    }
+    .success-state h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 700; margin-bottom: 10px;
+    }
+    .success-state p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+    .booking-id {
+      display: inline-block;
+      background: var(--saffron-light); color: var(--saffron);
+      font-size: 13px; font-weight: 700;
+      padding: 6px 16px; border-radius: var(--radius-pill);
+      margin: 12px 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-primary); color: rgba(255,255,255,0.6);
+      padding: 56px 5% 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--saffron); margin-bottom: 14px;
+      display: block;
+    }
+    .footer-logo span { color: #fff; }
+    .footer-about {
+      font-size: 14px; line-height: 1.8; max-width: 260px;
+      margin-bottom: 20px;
+    }
+    .footer-col h4 {
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: #fff; margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.5); font-size: 14px;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+      font-size: 13px;
+    }
+    .footer-cities {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .footer-city-tag {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.5);
+      font-size: 12px; padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand-col { grid-column: 1/-1; }
+    }
+    @media (max-width: 600px) {
+      .hero { min-height: 100vh; }
+      .hero h1 { font-size: 38px; }
+      .search-panel { flex-direction: column; }
+      .search-divider { width: 100%; height: 1px; }
+      .search-go { margin: 4px; }
+      .hero-stats { gap: 20px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .city-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#" class="logo">Local<span>Stay</span> <em>India</em></a>
+    <div class="nav-right">
+      <a href="#listings" class="nav-link">Explore</a>
+      <a href="#experiences" class="nav-link">Experiences</a>
+      <button class="nav-btn outline" onclick="openModal('authModal')">Log in</button>
+      <button class="nav-btn" onclick="openModal('authModal')">Sign up</button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-mandala"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Verified local hosts across India
+      </div>
+      <h1>Stay with<br><em>real India.</em><br>Not hotels.</h1>
+      <p class="hero-sub">
+        Authentic homestays with local families across 9 destinations —
+        from Himalayan valleys to coastal villages.
+      </p>
+
+      <div class="search-panel">
+        <div class="search-group">
+          <label>Destination</label>
+          <select id="heroCity">
+            <option value="all">All destinations</option>
+            <option value="goa">Goa</option>
+            <option value="manali">Manali</option>
+            <option value="rishikesh">Rishikesh</option>
+            <option value="jaipur">Jaipur</option>
+            <option value="pondicherry">Pondicherry</option>
+            <option value="coorg">Coorg</option>
+            <option value="munnar">Munnar</option>
+            <option value="varanasi">Varanasi</option>
+            <option value="himachal">Himachal Pradesh</option>
+          </select>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-group">
+          <label>Check-in</label>
+          <input type="date" id="heroCheckIn">
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-group">
+          <label>Check-out</label>
+          <input type="date" id="heroCheckOut">
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-group" style="max-width:80px;">
+          <label>Guests</label>
+          <input type="number" min="1" max="12" value="2" id="heroGuests">
+        </div>
+        <button class="search-go" onclick="doSearch()">Search →</button>
+      </div>
+
+      <!-- AI NATURAL LANGUAGE SEARCH -->
+      <div class="ai-search-wrap">
+        <div class="ai-search-label">
+          <span class="ai-badge">✦ AI</span>
+          Natural language search — powered by Claude
+        </div>
+        <div class="ai-search-row">
+          <input
+            class="ai-input"
+            id="aiInput"
+            type="text"
+            placeholder='Try: "cozy Goa beach stay under ₹5000" or "mountain home for 4 in Himachal"'
+            onkeydown="if(event.key==='Enter') runAiSearch()"
+          >
+          <button class="ai-go" id="aiGoBtn" onclick="runAiSearch()">
+            ✦ Ask AI
+          </button>
+        </div>
+        <div class="ai-thinking" id="aiThinking">
+          <div class="ai-dots">
+            <span></span><span></span><span></span>
+          </div>
+          Claude is finding your perfect stay...
+        </div>
+        <div class="ai-result-banner" id="aiResultBanner"></div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">9</div>
+          <div class="stat-label">Destinations</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">45+</div>
+          <div class="stat-label">Verified homes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Average rating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Local hosts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CITIES ── -->
+  <section class="cities-section">
+    <div class="section-tag">Explore India</div>
+    <h2 class="section-title">Choose your destination</h2>
+    <p class="section-sub">Click a city to browse its homestays</p>
+
+    <div class="city-cards">
+      <div class="city-card active-city" onclick="selectCity('goa', this)">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80" alt="Goa">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Goa</div>
+          <div class="city-state">Goa</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('manali', this)">
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&q=80" alt="Manali">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Manali</div>
+          <div class="city-state">Himachal Pradesh</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('rishikesh', this)">
+        <img src="https://images.unsplash.com/photo-1644651297853-b6dd51df3cd8?w=400&q=80" alt="Rishikesh">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Rishikesh</div>
+          <div class="city-state">Uttarakhand</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('jaipur', this)">
+        <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&q=80" alt="Jaipur">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Jaipur</div>
+          <div class="city-state">Rajasthan</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('pondicherry', this)">
+        <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80" alt="Pondicherry">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Pondicherry</div>
+          <div class="city-state">Tamil Nadu</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('coorg', this)">
+        <img src="https://images.unsplash.com/photo-1604608672516-f1b9c3f0e4a6?w=400&q=80" alt="Coorg">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Coorg</div>
+          <div class="city-state">Karnataka</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('munnar', this)">
+        <img src="https://images.unsplash.com/photo-1590123715937-e66d9a945e6e?w=400&q=80" alt="Munnar">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Munnar</div>
+          <div class="city-state">Kerala</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('varanasi', this)">
+        <img src="https://images.unsplash.com/photo-1561361058-c24cecde2b84?w=400&q=80" alt="Varanasi">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Varanasi</div>
+          <div class="city-state">Uttar Pradesh</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+      <div class="city-card" onclick="selectCity('himachal', this)">
+        <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&q=80" alt="Himachal">
+        <div class="city-overlay"></div>
+        <div class="city-info">
+          <div class="city-name">Himachal Pradesh</div>
+          <div class="city-state">Spiti / Kasol / McLeod</div>
+          <span class="city-count">5 homes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LISTINGS ── -->
+  <section class="listings-section" id="listings">
+    <div class="listings-header">
+      <div>
+        <h2 class="listings-title" id="listingsTitle">Stays in Goa</h2>
+        <p class="listings-count" id="listingsCount">5 verified homestays</p>
+      </div>
+    </div>
+    <div class="filters" id="filtersRow">
+      <button class="filter-chip active" onclick="filterProps(this,'all')">All</button>
+      <button class="filter-chip" onclick="filterProps(this,'beachfront')">Beachfront</button>
+      <button class="filter-chip" onclick="filterProps(this,'mountain')">Mountain view</button>
+      <button class="filter-chip" onclick="filterProps(this,'heritage')">Heritage</button>
+      <button class="filter-chip" onclick="filterProps(this,'nature')">Nature</button>
+      <button class="filter-chip" onclick="filterProps(this,'budget')">Budget</button>
+    </div>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <!-- ── EXPERIENCES ── -->
+  <section class="exp-section" id="experiences">
+    <div class="section-tag">Local Experiences</div>
+    <h2 class="section-title">Things Airbnb won't show you</h2>
+    <p class="section-sub">Curated local experiences handpicked by our hosts</p>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-icon">🎣</div>
+        <div class="exp-city">Goa</div>
+        <div class="exp-name">Dawn fishing with locals</div>
+        <div class="exp-desc">Join a fisherman family at 5 AM for a real Goan fishing experience in the Arabian Sea.</div>
+        <div class="exp-price">₹800 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🧘</div>
+        <div class="exp-city">Rishikesh</div>
+        <div class="exp-name">Sunrise yoga on the Ganges</div>
+        <div class="exp-desc">A certified local yogi leads a sunrise session on the banks of the holy Ganga river.</div>
+        <div class="exp-price">₹600 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🍛</div>
+        <div class="exp-city">Jaipur</div>
+        <div class="exp-name">Dal bati cooking class</div>
+        <div class="exp-desc">Learn Rajasthani cooking secrets from a local grandmother in a 200-year-old haveli kitchen.</div>
+        <div class="exp-price">₹1,200 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🏔️</div>
+        <div class="exp-city">Manali</div>
+        <div class="exp-name">Hidden valley trek</div>
+        <div class="exp-desc">A local shepherd guides you through a secret valley tourists never reach. Campfire included.</div>
+        <div class="exp-price">₹2,500 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">☕</div>
+        <div class="exp-city">Coorg</div>
+        <div class="exp-name">Coffee estate morning tour</div>
+        <div class="exp-desc">Walk through a family coffee estate, learn about processing, and taste freshly brewed Coorg coffee.</div>
+        <div class="exp-price">₹900 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🪔</div>
+        <div class="exp-city">Varanasi</div>
+        <div class="exp-name">Ganga Aarti boat ritual</div>
+        <div class="exp-desc">Experience the evening Ganga Aarti from a local boat with a priest who explains every ritual.</div>
+        <div class="exp-price">₹700 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🌿</div>
+        <div class="exp-city">Munnar</div>
+        <div class="exp-name">Tea plucking with farmers</div>
+        <div class="exp-desc">Spend a morning plucking tea leaves with local farmers and visit the processing factory.</div>
+        <div class="exp-price">₹850 / person</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🚵</div>
+        <div class="exp-city">Himachal</div>
+        <div class="exp-name">Spiti Valley offroad</div>
+        <div class="exp-desc">A local biker takes you through high-altitude Spiti roads that no tourist bus can reach.</div>
+        <div class="exp-price">₹3,500 / person</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY LOCALSTAY ── -->
+  <section class="why-section">
+    <div class="section-tag">Why LocalStay</div>
+    <h2 class="section-title">What makes us different</h2>
+    <p class="section-sub">We're not Airbnb. We're something better for India.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🪪</div>
+        <h3>Verified Hosts Only</h3>
+        <p>Every host is government ID verified and personally reviewed. Your safety is non-negotiable.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>100% Local Hosts</h3>
+        <p>Real Indian families, not property managers or commercial operators. Every stay supports a local family.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🍽️</div>
+        <h3>Home-cooked Meals</h3>
+        <p>Most hosts offer authentic home-cooked regional breakfast. No room service — real family food.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>Pay in Indian Rupees</h3>
+        <p>UPI, PhonePe, Paytm, net banking — all options available. No currency confusion.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📞</div>
+        <h3>WhatsApp Support</h3>
+        <p>24/7 WhatsApp support in Hindi and English. No chat bots, real humans.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌱</div>
+        <h3>Eco-Conscious Stays</h3>
+        <p>We prioritize homestays that use solar energy, grow their own food, or support local conservation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOST STORIES ── -->
+  <section class="hosts-section">
+    <div class="section-tag">Our Hosts</div>
+    <h2 class="section-title">Meet the families</h2>
+    <p class="section-sub">Real stories from real hosts across India</p>
+    <div class="hosts-grid">
+      <div class="host-card">
+        <div class="host-card-avatar">P</div>
+        <div class="host-card-name">Priya D'Souza</div>
+        <div class="host-card-loc">📍 Candolim, Goa</div>
+        <div class="host-card-quote">"My home is my heart. Every guest who stays with us leaves as family. I cook fresh fish curry every morning — that's my welcome gift."</div>
+        <div class="host-card-years">Hosting since 2019 · 4.97 ★ · 143 guests</div>
+      </div>
+      <div class="host-card">
+        <div class="host-card-avatar">R</div>
+        <div class="host-card-name">Ram Singh Thakur</div>
+        <div class="host-card-loc">📍 Old Manali, Himachal</div>
+        <div class="host-card-quote">"Guests come for the mountains but they stay for the stories. I know every trail, every hidden waterfall. This is my classroom."</div>
+        <div class="host-card-years">Hosting since 2017 · 4.95 ★ · 218 guests</div>
+      </div>
+      <div class="host-card">
+        <div class="host-card-avatar">A</div>
+        <div class="host-card-name">Annapurna Devi</div>
+        <div class="host-card-loc">📍 Rishikesh, Uttarakhand</div>
+        <div class="host-card-quote">"Rishikesh is not just yoga. It is the river, the energy, the people. I want every guest to feel that real energy — not the tourist version."</div>
+        <div class="host-card-years">Hosting since 2018 · 4.98 ★ · 192 guests</div>
+      </div>
+      <div class="host-card">
+        <div class="host-card-avatar">M</div>
+        <div class="host-card-name">Mohammed Farooq</div>
+        <div class="host-card-loc">📍 Pink City, Jaipur</div>
+        <div class="host-card-quote">"My haveli has 300 years of history. Every stone, every arch has a story. I will tell you all of them over chai on the rooftop."</div>
+        <div class="host-card-years">Hosting since 2016 · 4.96 ★ · 304 guests</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <span class="footer-logo">Local<span>Stay</span> India</span>
+        <p class="footer-about">Connecting curious travellers with real Indian families across the country's most beautiful destinations. Built in India, for India.</p>
+        <div class="footer-cities">
+          <span class="footer-city-tag">Goa</span>
+          <span class="footer-city-tag">Manali</span>
+          <span class="footer-city-tag">Rishikesh</span>
+          <span class="footer-city-tag">Jaipur</span>
+          <span class="footer-city-tag">Pondicherry</span>
+          <span class="footer-city-tag">Coorg</span>
+          <span class="footer-city-tag">Munnar</span>
+          <span class="footer-city-tag">Varanasi</span>
+          <span class="footer-city-tag">Himachal</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Our mission</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help centre</a></li>
+          <li><a href="#">Cancellation policy</a></li>
+          <li><a href="#">Safety tips</a></li>
+          <li><a href="#">WhatsApp us</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hosting</h4>
+        <ul>
+          <li><a href="#">Become a host</a></li>
+          <li><a href="#">Host verification</a></li>
+          <li><a href="#">Host resources</a></li>
+          <li><a href="#">Community forum</a></li>
+          <li><a href="#">Host stories</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 LocalStay India. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service · Sitemap</span>
+    </div>
+  </footer>
+
+  <!-- ── AUTH MODAL ── -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Welcome to LocalStay</h3>
+        <button class="modal-close" onclick="closeModal('authModal')">×</button>
+      </div>
+      <div class="modal-body" id="authModalBody">
+        <div class="modal-tabs">
+          <button class="modal-tab active" onclick="switchAuthTab(this,'login')">Log in</button>
+          <button class="modal-tab" onclick="switchAuthTab(this,'signup')">Sign up</button>
+        </div>
+        <div id="loginForm">
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="••••••••">
+          </div>
+          <button class="btn-primary" onclick="handleAuth()">Continue</button>
+          <div class="divider-or">or</div>
+          <button class="social-btn">🔵 Continue with Google</button>
+          <button class="social-btn">📱 Continue with phone (OTP)</button>
+        </div>
+        <div id="signupForm" style="display:none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name</label>
+              <input type="text" placeholder="Arjun">
+            </div>
+            <div class="form-group">
+              <label>Last name</label>
+              <input type="text" placeholder="Sharma">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label>Phone number</label>
+            <input type="tel" placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Create a strong password">
+          </div>
+          <div class="form-group">
+            <label>City you live in</label>
+            <input type="text" placeholder="Mumbai, Delhi, Bengaluru...">
+          </div>
+          <button class="btn-primary" onclick="handleAuth()">Create account</button>
+          <div class="divider-or">or</div>
+          <button class="social-btn">🔵 Sign up with Google</button>
+        </div>
+        <div class="modal-note">
+          By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BOOKING MODAL ── -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Reserve your stay</h3>
+        <button class="modal-close" onclick="closeModal('bookingModal')">×</button>
+      </div>
+      <div class="modal-body" id="bookingModalBody">
+        <div class="booking-prop-summary" id="bookingSummary">
+          <img id="bookingImg" src="" alt="" class="booking-prop-img">
+          <div class="booking-prop-info">
+            <h4 id="bookingName">Property</h4>
+            <p id="bookingCity">Location</p>
+            <p id="bookingHost" style="color:var(--saffron); font-size:13px; margin-top:3px;"></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Check-in</label>
+            <input type="date" id="bookIn">
+          </div>
+          <div class="form-group">
+            <label>Check-out</label>
+            <input type="date" id="bookOut">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Number of guests</label>
+          <input type="number" min="1" max="12" value="2" id="bookGuests">
+        </div>
+        <div class="form-group">
+          <label>Your full name</label>
+          <input type="text" id="bookGuestName" placeholder="As on your ID">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="bookEmail" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="bookPhone" placeholder="+91 98765 43210">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Payment method</label>
+          <select id="bookPayment">
+            <option>UPI / PhonePe / Paytm</option>
+            <option>Credit / Debit Card</option>
+            <option>Net Banking</option>
+            <option>Pay at property</option>
+          </select>
+        </div>
+        <div class="price-breakdown" id="bookPriceBreakdown"></div>
+        <button class="btn-primary" onclick="confirmBooking()">Confirm reservation</button>
+        <div class="modal-note" style="margin-top:12px;">
+          Free cancellation up to 48 hours before check-in · Secure payment
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── DATA ── */
+    const allProperties = [
+      // GOA
+      { id:'g1', city:'goa', cityLabel:'Goa', name:'Azure Bliss Villa', host:'Priya D\'Souza', price:8500, type:'beachfront', rating:4.97, reviews:143, beds:3, guests:6, img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80', badge:'verified', desc:'Beachfront family villa' },
+      { id:'g2', city:'goa', cityLabel:'Goa', name:'The Panjim Studio', host:'Carlos Fernandes', price:3200, type:'budget', rating:4.82, reviews:94, beds:1, guests:2, img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', badge:'', desc:'Charming city apartment' },
+      { id:'g3', city:'goa', cityLabel:'Goa', name:'Anjuna Seaside Cottage', host:'Maria Pereira', price:5800, type:'beachfront', rating:4.88, reviews:61, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'popular', desc:'50m to beach, private garden' },
+      { id:'g4', city:'goa', cityLabel:'Goa', name:'Calangute Garden Home', host:'Raju Naik', price:4500, type:'nature', rating:4.79, reviews:52, beds:2, guests:4, img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80', badge:'', desc:'Lush garden, homemade breakfasts' },
+      { id:'g5', city:'goa', cityLabel:'Goa', name:'Vagator Clifftop House', host:'Suresh Gaonkar', price:9200, type:'beachfront', rating:4.93, reviews:88, beds:3, guests:6, img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80', badge:'verified', desc:'Ocean-view clifftop with sunset deck' },
+
+      // MANALI
+      { id:'m1', city:'manali', cityLabel:'Manali, Himachal Pradesh', name:'Himalayan Hearth Cottage', host:'Ram Singh Thakur', price:4200, type:'mountain', rating:4.95, reviews:218, beds:2, guests:4, img:'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', badge:'verified', desc:'Pine forest, snow views, bonfire' },
+      { id:'m2', city:'manali', cityLabel:'Manali, Himachal Pradesh', name:'Old Manali Treehouse', host:'Sunita Sharma', price:3800, type:'nature', rating:4.87, reviews:104, beds:1, guests:2, img:'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=600&q=80', badge:'popular', desc:'Unique treehouse, apple orchard' },
+      { id:'m3', city:'manali', cityLabel:'Manali, Himachal Pradesh', name:'Solang Valley Homestay', host:'Vikram Negi', price:5500, type:'mountain', rating:4.91, reviews:76, beds:3, guests:6, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'', desc:'Valley views, local Himachali meals' },
+      { id:'m4', city:'manali', cityLabel:'Manali, Himachal Pradesh', name:'Rohtang Base Camp', host:'Deepak Chauhan', price:6800, type:'mountain', rating:4.89, reviews:57, beds:2, guests:4, img:'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=600&q=80', badge:'', desc:'Base for trekking, guide included' },
+      { id:'m5', city:'manali', cityLabel:'Manali, Himachal Pradesh', name:'Beas River Farmhouse', host:'Kamla Devi', price:3200, type:'budget', rating:4.78, reviews:43, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'', desc:'Riverside, home-cooked daal-roti' },
+
+      // RISHIKESH
+      { id:'r1', city:'rishikesh', cityLabel:'Rishikesh, Uttarakhand', name:'Ganga View Ashram Home', host:'Annapurna Devi', price:3500, type:'heritage', rating:4.98, reviews:192, beds:2, guests:3, img:'https://images.unsplash.com/photo-1644651297853-b6dd51df3cd8?w=600&q=80', badge:'verified', desc:'Ganges view, morning yoga included' },
+      { id:'r2', city:'rishikesh', cityLabel:'Rishikesh, Uttarakhand', name:'Lakshman Jhula Nest', host:'Ramesh Prasad', price:2800, type:'budget', rating:4.83, reviews:118, beds:1, guests:2, img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', badge:'', desc:'Walking distance to Jhula bridge' },
+      { id:'r3', city:'rishikesh', cityLabel:'Rishikesh, Uttarakhand', name:'Forest Retreat Rishikesh', host:'Swati Joshi', price:5200, type:'nature', rating:4.91, reviews:87, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'popular', desc:'Jungle setting, meditation space' },
+      { id:'r4', city:'rishikesh', cityLabel:'Rishikesh, Uttarakhand', name:'Ram Jhula Heritage Room', host:'Pandit Gopal', price:2200, type:'heritage', rating:4.76, reviews:64, beds:1, guests:2, img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', badge:'', desc:'Temple neighbourhood, spiritual feel' },
+      { id:'r5', city:'rishikesh', cityLabel:'Rishikesh, Uttarakhand', name:'White Water Camp House', host:'Arun Kumar', price:4800, type:'nature', rating:4.88, reviews:72, beds:3, guests:6, img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80', badge:'', desc:'Rafting base, adventure packages' },
+
+      // JAIPUR
+      { id:'j1', city:'jaipur', cityLabel:'Jaipur, Rajasthan', name:'Haveli Royal Chambers', host:'Mohammed Farooq', price:7500, type:'heritage', rating:4.96, reviews:304, beds:3, guests:6, img:'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&q=80', badge:'verified', desc:'300-year-old haveli, rooftop dining' },
+      { id:'j2', city:'jaipur', cityLabel:'Jaipur, Rajasthan', name:'Pink City Homestay', host:'Savita Agarwal', price:3200, type:'heritage', rating:4.84, reviews:129, beds:2, guests:4, img:'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80', badge:'', desc:'Old city location, local bazaar nearby' },
+      { id:'j3', city:'jaipur', cityLabel:'Jaipur, Rajasthan', name:'Amber Fort View Home', host:'Rajesh Meena', price:5800, type:'heritage', rating:4.89, reviews:96, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'popular', desc:'Fort views, Rajasthani thali breakfast' },
+      { id:'j4', city:'jaipur', cityLabel:'Jaipur, Rajasthan', name:'Sanganer Artist House', host:'Gopal Kumhar', price:2600, type:'budget', rating:4.77, reviews:51, beds:1, guests:2, img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', badge:'', desc:'Stay with a block-print artist family' },
+      { id:'j5', city:'jaipur', cityLabel:'Jaipur, Rajasthan', name:'Nahargarh Hills Retreat', host:'Deepika Rathore', price:9500, type:'mountain', rating:4.94, reviews:78, beds:3, guests:5, img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80', badge:'verified', desc:'Hillside, city panorama, pool' },
+
+      // PONDICHERRY
+      { id:'p1', city:'pondicherry', cityLabel:'Pondicherry', name:'French Quarter Maison', host:'Anita Krishnamurthy', price:6500, type:'heritage', rating:4.93, reviews:167, beds:2, guests:4, img:'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80', badge:'verified', desc:'Colonial French villa, sea breeze' },
+      { id:'p2', city:'pondicherry', cityLabel:'Pondicherry', name:'Auroville Eco Stay', host:'Lakshmi Suresh', price:3800, type:'nature', rating:4.88, reviews:112, beds:1, guests:2, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'', desc:'Near Auroville, organic farm meals' },
+      { id:'p3', city:'pondicherry', cityLabel:'Pondicherry', name:'Rock Beach Townhouse', host:'Pierre Dubois', price:7200, type:'beachfront', rating:4.91, reviews:89, beds:3, guests:5, img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80', badge:'popular', desc:'Steps to beach, rooftop lounge' },
+      { id:'p4', city:'pondicherry', cityLabel:'Pondicherry', name:'Tamil Quarter Heritage', host:'Selvi Ramasamy', price:2900, type:'heritage', rating:4.79, reviews:68, beds:2, guests:4, img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', badge:'', desc:'Authentic Tamil home, traditional cooking' },
+      { id:'p5', city:'pondicherry', cityLabel:'Pondicherry', name:'Serenity Garden Home', host:'Vijay Nair', price:4500, type:'nature', rating:4.85, reviews:74, beds:2, guests:4, img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80', badge:'', desc:'Lush garden, yoga deck, vegan food' },
+
+      // COORG
+      { id:'c1', city:'coorg', cityLabel:'Coorg, Karnataka', name:'Coffee Blossom Estate', host:'Suresh Ponnappa', price:7800, type:'nature', rating:4.95, reviews:196, beds:3, guests:6, img:'https://images.unsplash.com/photo-1590123715937-e66d9a945e6e?w=600&q=80', badge:'verified', desc:'Working coffee estate, plantation walks' },
+      { id:'c2', city:'coorg', cityLabel:'Coorg, Karnataka', name:'Misty Hills Cottage', host:'Kavitha Nanda', price:5200, type:'mountain', rating:4.87, reviews:143, beds:2, guests:4, img:'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', badge:'', desc:'Cloud-covered valley views, bonfires' },
+      { id:'c3', city:'coorg', cityLabel:'Coorg, Karnataka', name:'Madikeri Kodava Home', host:'Colonel Achaiah', price:4100, type:'heritage', rating:4.91, reviews:87, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'popular', desc:'Stay with a Kodava warrior family' },
+      { id:'c4', city:'coorg', cityLabel:'Coorg, Karnataka', name:'Bamboo Forest Nook', host:'Pushpa Gowda', price:3500, type:'nature', rating:4.81, reviews:62, beds:1, guests:2, img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', badge:'', desc:'Surrounded by bamboo, bird watching' },
+      { id:'c5', city:'coorg', cityLabel:'Coorg, Karnataka', name:'Abbey Falls Farmhouse', host:'Ravi Kumar', price:6200, type:'nature', rating:4.89, reviews:108, beds:3, guests:6, img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80', badge:'', desc:'2 mins from Abbey Falls, river views' },
+
+      // MUNNAR
+      { id:'mu1', city:'munnar', cityLabel:'Munnar, Kerala', name:'Tea Garden Bungalow', host:'George Thomas', price:6400, type:'nature', rating:4.94, reviews:182, beds:3, guests:6, img:'https://images.unsplash.com/photo-1590123715937-e66d9a945e6e?w=600&q=80', badge:'verified', desc:'Inside a working tea estate, mist views' },
+      { id:'mu2', city:'munnar', cityLabel:'Munnar, Kerala', name:'Kerala Family Homestay', host:'Lissy Mathew', price:3800, type:'budget', rating:4.86, reviews:134, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'', desc:'Authentic Kerala sadya, home cooking' },
+      { id:'mu3', city:'munnar', cityLabel:'Munnar, Kerala', name:'Eravikulam Ridge House', host:'Santhosh Babu', price:5600, type:'mountain', rating:4.9, reviews:98, beds:2, guests:4, img:'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', badge:'popular', desc:'NP border, Nilgiri Tahr sightings' },
+      { id:'mu4', city:'munnar', cityLabel:'Munnar, Kerala', name:'Mattupetty Lake View', host:'Anitha Pillai', price:4900, type:'nature', rating:4.83, reviews:76, beds:2, guests:4, img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80', badge:'', desc:'Lake facing, boat ride included' },
+      { id:'mu5', city:'munnar', cityLabel:'Munnar, Kerala', name:'Spice Garden Retreat', host:'Babu Kurien', price:7200, type:'nature', rating:4.93, reviews:119, beds:3, guests:5, img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80', badge:'verified', desc:'Cardamom & pepper garden, Ayurveda' },
+
+      // VARANASI
+      { id:'v1', city:'varanasi', cityLabel:'Varanasi, Uttar Pradesh', name:'Ghats Heritage Mansion', host:'Pandit Ramesh Shukla', price:5200, type:'heritage', rating:4.96, reviews:247, beds:3, guests:6, img:'https://images.unsplash.com/photo-1561361058-c24cecde2b84?w=600&q=80', badge:'verified', desc:'100m from Dashashwamedh Ghat, Aarti views' },
+      { id:'v2', city:'varanasi', cityLabel:'Varanasi, Uttar Pradesh', name:'Silk Weaver\'s Home', host:'Mohd. Irfan Ansari', price:2800, type:'heritage', rating:4.84, reviews:118, beds:2, guests:4, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'', desc:'Old city, silk weaving demonstrations' },
+      { id:'v3', city:'varanasi', cityLabel:'Varanasi, Uttar Pradesh', name:'Assi Ghat Rooftop Stay', host:'Prabhati Mishra', price:3600, type:'heritage', rating:4.9, reviews:93, beds:2, guests:4, img:'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80', badge:'popular', desc:'Ghat views from rooftop, sunrise boat' },
+      { id:'v4', city:'varanasi', cityLabel:'Varanasi, Uttar Pradesh', name:'BHU Campus Guesthouse', host:'Dr. Seema Singh', price:2200, type:'budget', rating:4.76, reviews:54, beds:1, guests:2, img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', badge:'', desc:'Near BHU, quiet academic neighbourhood' },
+      { id:'v5', city:'varanasi', cityLabel:'Varanasi, Uttar Pradesh', name:'Harishchandra Ghat Villa', host:'Vikash Gupta', price:6800, type:'heritage', rating:4.92, reviews:107, beds:3, guests:5, img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80', badge:'verified', desc:'Private terrace, evening Ganga views' },
+
+      // HIMACHAL
+      { id:'h1', city:'himachal', cityLabel:'Himachal Pradesh', name:'Spiti Mud House', host:'Dorje Namgyal', price:3200, type:'mountain', rating:4.97, reviews:164, beds:2, guests:4, img:'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=600&q=80', badge:'verified', desc:'Authentic Spiti mud home, 4000m altitude' },
+      { id:'h2', city:'himachal', cityLabel:'Himachal Pradesh', name:'Kasol Pine Nest', host:'Ratan Thakur', price:2800, type:'nature', rating:4.88, reviews:139, beds:2, guests:4, img:'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', badge:'popular', desc:'Parvati Valley, riverside, trekking base' },
+      { id:'h3', city:'himachal', cityLabel:'Himachal Pradesh', name:'McLeod Tibetan Home', host:'Tenzin Wangchuk', price:3500, type:'heritage', rating:4.91, reviews:98, beds:2, guests:3, img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', badge:'', desc:'Tibetan family, momos for breakfast' },
+      { id:'h4', city:'himachal', cityLabel:'Himachal Pradesh', name:'Shimla Colonial Cottage', host:'Anjali Verma', price:5500, type:'heritage', rating:4.86, reviews:82, beds:3, guests:5, img:'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80', badge:'', desc:'British-era cottage, forest walks' },
+      { id:'h5', city:'himachal', cityLabel:'Himachal Pradesh', name:'Kaza Stargazing Home', host:'Lobsang Phuntsok', price:4100, type:'mountain', rating:4.94, reviews:71, beds:2, guests:4, img:'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=600&q=80', badge:'verified', desc:'Darkest skies in India, telescope included' },
+    ];
+
+    let currentCity = 'goa';
+    let currentProperty = null;
+
+    /* ── INIT ── */
+    const today = new Date();
+    const d1 = new Date(today); d1.setDate(d1.getDate() + 3);
+    const d2 = new Date(today); d2.setDate(d2.getDate() + 7);
+    const fmt = d => d.toISOString().split('T')[0];
+    document.getElementById('heroCheckIn').value = fmt(d1);
+    document.getElementById('heroCheckOut').value = fmt(d2);
+    document.getElementById('bookIn').value = fmt(d1);
+    document.getElementById('bookOut').value = fmt(d2);
+
+    renderCards('goa');
+
+    /* ── CITY SELECTION ── */
+    function selectCity(city, el) {
+      currentCity = city;
+      document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active-city'));
+      el.classList.add('active-city');
+      filterProps(document.querySelector('.filter-chip.active'), 'all');
+      renderCards(city);
+      document.getElementById('listings').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function renderCards(city, typeFilter) {
+      const grid = document.getElementById('cardsGrid');
+      let props = allProperties.filter(p => p.city === city);
+      if (typeFilter && typeFilter !== 'all') {
+        props = props.filter(p => p.type === typeFilter);
+      }
+      const cityLabel = props[0]?.cityLabel || city;
+      document.getElementById('listingsTitle').textContent = `Stays in ${cityLabel.split(',')[0]}`;
+      document.getElementById('listingsCount').textContent = `${props.length} verified homestay${props.length !== 1 ? 's' : ''}`;
+
+      grid.innerHTML = props.map(p => `
+        <div class="prop-card" data-type="${p.type}">
+          <div class="prop-img-wrap">
+            <img src="${p.img}" alt="${p.name}" loading="lazy">
+            ${p.badge ? `<span class="prop-badge ${p.badge}">${p.badge === 'verified' ? '✓ Verified Host' : p.badge === 'popular' ? '🔥 Popular' : p.badge}</span>` : ''}
+            <button class="heart-btn" onclick="toggleHeart(this,event)">🤍</button>
+          </div>
+          <div class="prop-body">
+            <div class="prop-city-tag">${p.cityLabel}</div>
+            <div class="prop-name">${p.name}</div>
+            <div class="prop-host">
+              <div class="host-avatar">${p.host.charAt(0)}</div>
+              <span class="host-name">Hosted by ${p.host}</span>
+            </div>
+            <div class="prop-features">
+              <span class="prop-feature">🛏 ${p.beds} bed${p.beds > 1 ? 's' : ''}</span>
+              <span class="prop-feature">👥 Up to ${p.guests} guests</span>
+              <span class="prop-feature">🍳 ${p.desc}</span>
+            </div>
+            <div class="prop-rating">
+              <span class="star">★</span> ${p.rating}
+              <span class="reviews">(${p.reviews} reviews)</span>
+            </div>
+            <div class="prop-footer">
+              <div class="prop-price">₹${p.price.toLocaleString()} <span>/ night</span></div>
+              <button class="book-btn" onclick='openBooking(${JSON.stringify(p).replace(/'/g,"&#39;")})'>Book now</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ── SEARCH ── */
+    function doSearch() {
+      const city = document.getElementById('heroCity').value;
+      if (city !== 'all') {
+        const cityCard = document.querySelector(`.city-card[onclick*="'${city}'"]`);
+        selectCity(city, cityCard || document.querySelector('.city-card'));
+      }
+      document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ── FILTERS ── */
+    function filterProps(btn, type) {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderCards(currentCity, type === 'all' ? null : type);
+    }
+
+    /* ── HEART ── */
+    function toggleHeart(btn, e) {
+      e.stopPropagation();
+      btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍';
+      btn.style.transform = 'scale(1.3)';
+      setTimeout(() => btn.style.transform = '', 200);
+    }
+
+    /* ── MODALS ── */
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    document.querySelectorAll('.modal-overlay').forEach(el => {
+      el.addEventListener('click', function(e) {
+        if (e.target === this) this.classList.remove('active');
+      });
+    });
+
+    function switchAuthTab(btn, tab) {
+      document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+      document.getElementById('signupForm').style.display = tab === 'signup' ? 'block' : 'none';
+      document.getElementById('authModalTitle').textContent = tab === 'login' ? 'Welcome back' : 'Join LocalStay India';
+    }
+
+    function handleAuth() {
+      document.getElementById('authModalBody').innerHTML = `
+        <div class="success-state">
+          <div class="success-icon">🙏</div>
+          <h3>Welcome to LocalStay!</h3>
+          <p>You're now part of our community of travellers experiencing real India.<br><br>
+          Explore homestays, book experiences, and connect with local families across 9 amazing destinations.</p>
+          <button class="btn-primary" style="margin-top:20px;" onclick="closeModal('authModal')">
+            Start exploring India →
+          </button>
+        </div>`;
+    }
+
+    /* ── BOOKING ── */
+    function openBooking(prop) {
+      currentProperty = prop;
+      document.getElementById('bookingImg').src = prop.img;
+      document.getElementById('bookingImg').alt = prop.name;
+      document.getElementById('bookingName').textContent = prop.name;
+      document.getElementById('bookingCity').textContent = prop.cityLabel;
+      document.getElementById('bookingHost').textContent = `Hosted by ${prop.host}`;
+      updatePriceBreakdown();
+      openModal('bookingModal');
+      document.getElementById('bookIn').addEventListener('change', updatePriceBreakdown);
+      document.getElementById('bookOut').addEventListener('change', updatePriceBreakdown);
+    }
+
+    function updatePriceBreakdown() {
+      if (!currentProperty) return;
+      const ci = new Date(document.getElementById('bookIn').value);
+      const co = new Date(document.getElementById('bookOut').value);
+      const nights = Math.max(1, Math.round((co - ci) / (1000 * 60 * 60 * 24)));
+      const base = currentProperty.price * nights;
+      const service = Math.round(base * 0.1);
+      const total = base + service;
+      document.getElementById('bookPriceBreakdown').innerHTML = `
+        <div class="price-row">
+          <span>₹${currentProperty.price.toLocaleString()} × ${nights} night${nights > 1 ? 's' : ''}</span>
+          <span>₹${base.toLocaleString()}</span>
+        </div>
+        <div class="price-row">
+          <span>LocalStay service fee (10%)</span>
+          <span>₹${service.toLocaleString()}</span>
+        </div>
+        <div class="price-row">
+          <span>Total (INR)</span>
+          <span>₹${total.toLocaleString()}</span>
+        </div>`;
+    }
+
+    async function confirmBooking() {
+      const name = document.getElementById('bookGuestName').value.trim();
+      const email = document.getElementById('bookEmail').value.trim();
+      const phone = document.getElementById('bookPhone').value.trim();
+      const checkin = document.getElementById('bookIn').value;
+      const checkout = document.getElementById('bookOut').value;
+      const guests = document.getElementById('bookGuests').value;
+      const payment = document.getElementById('bookPayment').value;
+
+      if (!name || !email) {
+        alert('Please fill in your name and email.');
+        return;
+      }
+
+      const nights = Math.max(1, Math.round(
+        (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24)
+      ));
+      const base = currentProperty.price * nights;
+      const total = base + Math.round(base * 0.1);
+
+      try {
+        const res = await fetch('http://52.66.186.55:5000/api/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, email, phone, checkin, checkout, guests, payment,
+            property: currentProperty.name,
+            city: currentProperty.cityLabel,
+            host: currentProperty.host,
+            price_per_night: currentProperty.price,
+            nights, total
+          })
+        });
+        const data = await res.json();
+        showBookingSuccess(data.booking_id, nights, total);
+      } catch (err) {
+        // Demo fallback if API not reachable
+        const fakeId = 'LS-' + Math.random().toString(36).substr(2,8).toUpperCase();
+        showBookingSuccess(fakeId, nights, total);
+      }
+    }
+
+    /* ── AI NLP SEARCH ── */
+    async function runAiSearch() {
+      const query = document.getElementById('aiInput').value.trim();
+      if (!query) return;
+
+      const btn = document.getElementById('aiGoBtn');
+      const thinking = document.getElementById('aiThinking');
+      const banner = document.getElementById('aiResultBanner');
+
+      btn.disabled = true;
+      thinking.classList.add('visible');
+      banner.classList.remove('visible');
+
+      const propertyList = allProperties.map(p =>
+        `id:${p.id} | city:${p.city} | name:${p.name} | type:${p.type} | price:${p.price} | beds:${p.beds} | guests:${p.guests} | rating:${p.rating} | desc:${p.desc}`
+      ).join('\n');
+
+      const prompt = `You are a travel search assistant for LocalStay India, a pan-India homestay platform.
+
+User query: "${query}"
+
+Available properties:
+${propertyList}
+
+Task: Find the best matching properties for the user's query. Consider city, price, type, guests, mood (cozy, adventure, heritage, nature, beachfront etc).
+
+Respond ONLY with valid JSON in this exact format, no other text:
+{
+  "matched_ids": ["id1", "id2", "id3"],
+  "summary": "One sentence explaining what you found and why",
+  "city": "city key if user specified one city, else null",
+  "suggestions": ["Short alternative query 1", "Short alternative query 2"]
+}`;
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 500,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+
+        const data = await res.json();
+        const raw = data.content?.[0]?.text || '';
+        const jsonMatch = raw.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error('No JSON');
+        const result = JSON.parse(jsonMatch[0]);
+
+        // Filter cards to matched IDs
+        const matched = allProperties.filter(p => result.matched_ids.includes(p.id));
+
+        // Switch city if needed
+        if (result.city && result.city !== currentCity) {
+          currentCity = result.city;
+          document.querySelectorAll('.city-card').forEach(c => {
+            c.classList.remove('active-city');
+            if (c.getAttribute('onclick')?.includes(`'${result.city}'`)) {
+              c.classList.add('active-city');
+            }
+          });
+        }
+
+        // Render matched cards
+        const grid = document.getElementById('cardsGrid');
+        document.getElementById('listingsTitle').textContent = `AI Search Results`;
+        document.getElementById('listingsCount').textContent = `${matched.length} home${matched.length !== 1 ? 's' : ''} matched your query`;
+
+        grid.innerHTML = matched.map(p => `
+          <div class="prop-card" data-type="${p.type}">
+            <div class="prop-img-wrap">
+              <img src="${p.img}" alt="${p.name}" loading="lazy">
+              <span class="prop-badge verified">✦ AI Match</span>
+              <button class="heart-btn" onclick="toggleHeart(this,event)">🤍</button>
+            </div>
+            <div class="prop-body">
+              <div class="prop-city-tag">${p.cityLabel}</div>
+              <div class="prop-name">${p.name}</div>
+              <div class="prop-host">
+                <div class="host-avatar">${p.host.charAt(0)}</div>
+                <span class="host-name">Hosted by ${p.host}</span>
+              </div>
+              <div class="prop-features">
+                <span class="prop-feature">🛏 ${p.beds} bed${p.beds > 1 ? 's' : ''}</span>
+                <span class="prop-feature">👥 Up to ${p.guests} guests</span>
+                <span class="prop-feature">🍳 ${p.desc}</span>
+              </div>
+              <div class="prop-rating">
+                <span class="star">★</span> ${p.rating}
+                <span class="reviews">(${p.reviews} reviews)</span>
+              </div>
+              <div class="prop-footer">
+                <div class="prop-price">₹${p.price.toLocaleString()} <span>/ night</span></div>
+                <button class="book-btn" onclick='openBooking(${JSON.stringify(p).replace(/'/g,"&#39;")})'>Book now</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Show result banner
+        banner.innerHTML = `
+          <strong>✦ Claude found ${matched.length} match${matched.length !== 1 ? 'es' : ''}:</strong>
+          ${result.summary}
+          ${result.suggestions?.length ? `
+            <div class="ai-chips">
+              ${result.suggestions.map(s => `<span class="ai-chip" onclick="document.getElementById('aiInput').value='${s}'; runAiSearch()">${s}</span>`).join('')}
+            </div>` : ''}`;
+        banner.classList.add('visible');
+
+        document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
+
+      } catch (err) {
+        // Fallback: simple keyword match
+        const q = query.toLowerCase();
+        const cityMap = { goa:['goa','beach','coastal'], manali:['manali','snow','skiing'], rishikesh:['rishikesh','yoga','ganges','rafting'], jaipur:['jaipur','rajasthan','heritage','haveli'], pondicherry:['pondicherry','french','colonial'], coorg:['coorg','coffee','karnataka'], munnar:['munnar','tea','kerala'], varanasi:['varanasi','ganga','spiritual'], himachal:['himachal','spiti','kasol','mcleod'] };
+        let matchedCity = null;
+        for (const [city, keywords] of Object.entries(cityMap)) {
+          if (keywords.some(k => q.includes(k))) { matchedCity = city; break; }
+        }
+        const budgetMatch = q.match(/(?:under|below|less than|₹)\s*(\d+)/);
+        const budget = budgetMatch ? parseInt(budgetMatch[1]) : null;
+        let results = matchedCity ? allProperties.filter(p => p.city === matchedCity) : allProperties;
+        if (budget) results = results.filter(p => p.price <= budget);
+        if (q.includes('budget') || q.includes('cheap')) results = results.filter(p => p.type === 'budget' || p.price < 4000);
+        if (q.includes('beach')) results = results.filter(p => p.type === 'beachfront');
+        if (q.includes('mountain') || q.includes('hill')) results = results.filter(p => p.type === 'mountain');
+        if (results.length === 0) results = allProperties.slice(0, 5);
+
+        const grid = document.getElementById('cardsGrid');
+        document.getElementById('listingsTitle').textContent = 'Search Results';
+        document.getElementById('listingsCount').textContent = `${results.length} homes matched`;
+        grid.innerHTML = results.slice(0, 6).map(p => `
+          <div class="prop-card" data-type="${p.type}">
+            <div class="prop-img-wrap">
+              <img src="${p.img}" alt="${p.name}" loading="lazy">
+              <span class="prop-badge verified">✦ Match</span>
+              <button class="heart-btn" onclick="toggleHeart(this,event)">🤍</button>
+            </div>
+            <div class="prop-body">
+              <div class="prop-city-tag">${p.cityLabel}</div>
+              <div class="prop-name">${p.name}</div>
+              <div class="prop-host">
+                <div class="host-avatar">${p.host.charAt(0)}</div>
+                <span class="host-name">Hosted by ${p.host}</span>
+              </div>
+              <div class="prop-features">
+                <span class="prop-feature">🛏 ${p.beds} bed${p.beds > 1 ? 's' : ''}</span>
+                <span class="prop-feature">👥 Up to ${p.guests} guests</span>
+                <span class="prop-feature">🍳 ${p.desc}</span>
+              </div>
+              <div class="prop-rating"><span class="star">★</span> ${p.rating} <span class="reviews">(${p.reviews} reviews)</span></div>
+              <div class="prop-footer">
+                <div class="prop-price">₹${p.price.toLocaleString()} <span>/ night</span></div>
+                <button class="book-btn" onclick='openBooking(${JSON.stringify(p).replace(/'/g,"&#39;")})'>Book now</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        banner.innerHTML = `<strong>Keyword results for:</strong> "${query}" — ${results.length} properties found`;
+        banner.classList.add('visible');
+        document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      btn.disabled = false;
+      thinking.classList.remove('visible');
+    }
+
+    function showBookingSuccess(bookingId, nights, total) {
+      document.getElementById('bookingModalBody').innerHTML = `
+        <div class="success-state">
+          <div class="success-icon">🎉</div>
+          <h3>Booking confirmed!</h3>
+          <div class="booking-id">${bookingId}</div>
+          <p>
+            <strong>${currentProperty.name}</strong> is reserved for
+            <strong>${nights} night${nights > 1 ? 's' : ''}</strong>.<br><br>
+            Your host <strong>${currentProperty.host}</strong> will contact you
+            on WhatsApp within 2 hours to share arrival details.<br><br>
+            Total paid: <strong>₹${total.toLocaleString()}</strong>
+          </p>
+          <button class="btn-primary" style="margin-top:20px;" onclick="closeModal('bookingModal')">
+            View my booking →
+          </button>
+        </div>`;
+    }
+  </script>
+
+</body>
+</html>
